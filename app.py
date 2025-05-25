@@ -80,8 +80,7 @@ with tab2:
     df = data.to_pandas()
     st.dataframe(df)
 
-
-  counts = df['picarats'].value_counts().sort_index().reset_index()
+    counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
 
     fig = px.bar(
