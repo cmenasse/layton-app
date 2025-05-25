@@ -73,6 +73,19 @@ with tab2:
     
     # Show the table
     st.dataframe(df)
+
+
+    @st.cache_data
+    def load_data():
+    dataset = load_dataset("cmenasse/dayton")
+    if isinstance(dataset, dict):
+        dataset = list(dataset.values())[0]
+    return dataset
+
+    data = load_data()
+
+    df = data.to_pandas()
+    st.write(df)
        
 
 with tab3:
