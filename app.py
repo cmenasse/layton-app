@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 from datasets import load_dataset
 
 tab1, tab2, tab3 = st.tabs(["Benchmark", "Data viz", "Data explorer"])
@@ -79,7 +80,27 @@ with tab2:
 
     df = data.to_pandas()
     st.dataframe(df)
-       
+
+
+
+    category_counts = df['category'].value_counts()
+    single_occurrences = category_counts[category_counts < 20].index
+    df['category_grouped'] = df['category'].apply(lambda x: 'Other' if x in single_occurrences else x)
+    grouped_counts = df['category_grouped'].value_counts().reset_index()
+    grouped_counts.columns = ['Category', 'Count']
+
+    fig = px.pie(
+        grouped_counts,
+        values='Count',
+        names='Category',
+        title='Categories',
+        hole=0.4  
+    )
+    st.plotly_chart(fig)
+
+
+
+
 
 with tab3:
 
