@@ -81,6 +81,31 @@ with tab2:
     st.dataframe(df)
 
 
+    counts = df['picarats'].value_counts().sort_index()
+    counts_df = counts.reset_index()
+    counts_df.columns = ['Values', 'Count']
+    fig6 = go.Figure()
+
+    fig6.add_trace(go.Bar(
+        x=counts_df['Values'],
+        y=counts_df['Count']
+    ))
+    fig6.update_layout(
+        title='Picarats distribution',
+        xaxis=dict(
+            title='Values',
+            tickmode='array',
+            tickvals=list(range(0, 110, 10)),  
+            range=[0, 105]  
+        ),
+        yaxis=dict(
+            title='Count'
+        )
+    )
+    st.plotly_chart(fig6, key="picarats", use_container_width=True)
+
+
+
     counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
     if 100 not in counts['Values'].values:
@@ -93,7 +118,7 @@ with tab2:
         dtick=10,
         range=[0, 100]
     )
-    st.plotly_chart(fig5, key="picarats", use_container_width=True)
+    st.plotly_chart(fig5, key="picarats_5", use_container_width=True)
 
 
 
