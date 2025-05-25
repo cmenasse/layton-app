@@ -84,15 +84,15 @@ with tab2:
 
     counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
-    fig = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
+    fig1 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
     fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
-    st.plotly_chart(fig)
+    st.plotly_chart(fig1, key="picarats_1")
 
 
     counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
 
-    fig = px.bar(
+    fig2 = px.bar(
         counts,
         x='Values',
         y='Count',
@@ -100,7 +100,7 @@ with tab2:
     )
 
     fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
-    st.plotly_chart(fig)
+    st.plotly_chart(fig2, key="picarats_2")
 
     category_counts = df['category'].value_counts()
     single_occurrences = category_counts[category_counts < 2].index
@@ -108,14 +108,14 @@ with tab2:
     grouped_counts = df['category_grouped'].value_counts().reset_index()
     grouped_counts.columns = ['Category', 'Count']
 
-    fig = px.pie(
+    fig3 = px.pie(
         grouped_counts,
         values='Count',
         names='Category',
         title='Categories',
         hole=0.4  
     )
-    st.plotly_chart(fig)
+    st.plotly_chart(fig3, key="camembert")
 
 
 
