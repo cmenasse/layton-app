@@ -80,6 +80,12 @@ with tab2:
     df = data.to_pandas()
     st.dataframe(df)
 
+    df = df[df["requires_game_engine"]==False]
+
+    print("Number of riddles without game engine need:", len(df))
+    print("Number of riddles without image need:", len(df[df["is_description_sufficient"]==True]))
+    print("Number of riddles with image need:", len(df[df["is_description_sufficient"]==False]))
+
 
     category_counts = df['category'].value_counts()
     single_occurrences = category_counts[category_counts < 10].index
