@@ -77,11 +77,22 @@ with tab2:
         return dataset
 
     data = load_data()
-
     df = data.to_pandas()
     st.dataframe(df)
 
 
+  counts = df['picarats'].value_counts().sort_index().reset_index()
+    counts.columns = ['Values', 'Count']
+
+    fig = px.bar(
+        counts,
+        x='Values',
+        y='Count',
+        title='Picarats distribution'
+    )
+
+    fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
+    st.plotly_chart(fig)
 
     category_counts = df['category'].value_counts()
     single_occurrences = category_counts[category_counts < 10].index
@@ -97,22 +108,6 @@ with tab2:
         hole=0.4  
     )
     st.plotly_chart(fig)
-
-
-    counts = df['picarats'].value_counts().sort_index().reset_index()
-    counts.columns = ['Values', 'Count']
-
-    fig = px.bar(
-        counts,
-        x='Values',
-        y='Count',
-        title='Picarats distribution'
-    )
-
-    fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
-    st.plotly_chart(fig)
-
-
 
 
 
