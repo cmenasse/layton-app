@@ -84,6 +84,23 @@ with tab2:
 
     counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
+    if 100 not in counts['Values'].values:
+        counts = pd.concat([counts, pd.DataFrame({'Values': [100], 'Count': [0]})])
+        counts = counts.sort_values('Values')
+    fig4 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
+
+    fig4.update_xaxes(
+        tickmode='array',
+        tickvals=list(range(0, 110, 10))  # Forcer les ticks
+    )
+
+    st.plotly_chart(fig4, key="picarats")
+
+
+
+
+    counts = df['picarats'].value_counts().sort_index().reset_index()
+    counts.columns = ['Values', 'Count']
     fig2 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
     fig2.update_xaxes(
         tickmode='linear',
@@ -91,7 +108,7 @@ with tab2:
         dtick=10,
         range=[0, 100] 
     )
-    st.plotly_chart(fig2, key="picarats")
+    st.plotly_chart(fig2, key="picarats_2")
 
 
     counts = df['picarats'].value_counts().sort_index().reset_index()
