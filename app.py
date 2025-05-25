@@ -12,13 +12,30 @@ with tab1:
     
     st.caption("Only text questions")
     data = {
-        "provider": ["Open AI", "Open AI", "Open AI", "Mistral"],
-        "models": ["o3", "o4-mini", "GPT-4o", "Medium 3"],
-        "release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
-        "accuracy": [0.85, 0.90, 0.88, 0.56],
-        "pika": [30000, 34000, 23000, 45000],
-        "cost": [0.10, 0.15, 0.08, 0.3],
-        "speed": [120, 100, 150, 455]
+        "provider": ["Open AI", "Open AI"],
+        "models": ["o3-mini", "GPT-4o"],
+        #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
+        "correct_answer_accuracy": [0.66, 0.30],
+        "justified_answer_accuracy": [0.61, 0.25],
+        "pika": [30000, 34000],
+        "cost": [0.10, 0.13],
+        "speed": [120, 100]
+    }
+    
+    df = pd.DataFrame(data)
+    st.dataframe(df)
+
+
+    st.caption("Text and image questions")
+    data = {
+        "provider": ["Open AI", "Open AI"],
+        "models": ["o4-mini", "GPT-4-1"],
+        #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
+        "correct_answer_accuracy": [0.28, 0.22],
+        "justified_answer_accuracy": [0.26, 0.19],        
+        "pika": [30000, 34000],
+        "cost": [0.10, 0.15],
+        "speed": [120, 100]
     }
     
     df = pd.DataFrame(data)
@@ -28,39 +45,26 @@ with tab1:
     data = {
         "provider": ["Open AI", "Open AI", "Open AI", "Mistral"],
         "models": ["o3", "o4-mini", "GPT-4o", "Pixtral Large"],
-        "release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
-        "0-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "2-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "3-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "4-hint accuracy": [0.85, 0.90, 0.88, 0.56],
+        #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
+        "0-hint accuracy": [0, 0, 0, 0],
+        "2-hint accuracy": [0, 0, 0, 0],
+        "3-hint accuracy": [0, 0, 0, 0],
+        "4-hint accuracy": [0, 0, 0, 0],
     }
     
     df = pd.DataFrame(data)
     st.dataframe(df)
     
-    st.caption("Text and image questions")
-    data = {
-        "provider": ["Open AI", "Open AI", "Open AI", "Mistral"],
-        "models": ["o3", "o4-mini", "GPT-4o", "Pixtral Large"],
-        "release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
-        "accuracy": [0.85, 0.90, 0.88, 0.56],
-        "pika": [30000, 34000, 23000, 45000],
-        "cost": [0.10, 0.15, 0.08, 0.3],
-        "speed": [120, 100, 150, 455]
-    }
-    
-    df = pd.DataFrame(data)
-    st.dataframe(df)
     
     st.caption("Text and image questions with hints")
     data = {
         "provider": ["Open AI", "Open AI", "Open AI", "Mistral"],
         "models": ["o3", "o4-mini", "GPT-4o", "Pixtral Large"],
-        "release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
-        "0-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "2-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "3-hint accuracy": [0.85, 0.90, 0.88, 0.56],
-        "4-hint accuracy": [0.85, 0.90, 0.88, 0.56],
+        #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
+        "0-hint accuracy": [0, 0, 0, 0],
+        "2-hint accuracy": [0, 0, 0, 0],
+        "3-hint accuracy": [0, 0, 0, 0],
+        "4-hint accuracy": [0, 0, 0, 0],
     }
     
     df = pd.DataFrame(data)
