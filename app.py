@@ -85,7 +85,7 @@ with tab2:
     counts = df['picarats'].value_counts().sort_index().reset_index()
     counts.columns = ['Values', 'Count']
     fig1 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
-    fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
+    fig1.update_xaxes(tickmode='linear', tick0=0, dtick=10)
     st.plotly_chart(fig1, key="picarats_1")
 
 
@@ -99,7 +99,7 @@ with tab2:
         title='Picarats distribution'
     )
 
-    fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
+    fig2.update_xaxes(tickmode='linear', tick0=0, dtick=10)
     st.plotly_chart(fig2, key="picarats_2")
 
     category_counts = df['category'].value_counts()
