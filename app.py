@@ -68,13 +68,6 @@ with tab1:
 
 with tab2:
 
-    dataset = load_dataset("cmenasse/layton")
-    df = dataset.to_pandas()
-    
-    # Show the table
-    st.dataframe(df)
-
-
     @st.cache_data
     def load_data():
     dataset = load_dataset("cmenasse/dayton")
@@ -85,7 +78,7 @@ with tab2:
     data = load_data()
 
     df = data.to_pandas()
-    st.write(df)
+    st.dataframe(df)
        
 
 with tab3:
