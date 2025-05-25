@@ -17,9 +17,10 @@ with tab1:
         #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
         "correct_answer_accuracy": [0.66, 0.30],
         "justified_answer_accuracy": [0.61, 0.25],
-        "pika": [30000, 34000],
-        "cost": [0.10, 0.13],
-        "speed": [120, 100]
+        "correct_answer_mean_picarats": [34.54, 31.86],
+        "justified_answer_mean_picarats": [33.04, 27.17],
+        "cost": ["-", "-"],
+        "speed": ["-", "-"]
     }
     
     df = pd.DataFrame(data)
@@ -33,9 +34,10 @@ with tab1:
         #"release": ["2025-04-16", "2025-04-16", "2025-04-16", "2025-04-16"],
         "correct_answer_accuracy": [0.28, 0.22],
         "justified_answer_accuracy": [0.26, 0.19],        
-        "pika": [30000, 34000],
-        "cost": [0.10, 0.15],
-        "speed": [120, 100]
+        "correct_answer_mean_picarats": [33.62, 30.70],
+        "justified_answer_mean_picarats": [31.17, 27.05],        
+        "cost": ["-", "-"],
+        "speed": ["-", "-"]
     }
     
     df = pd.DataFrame(data)
