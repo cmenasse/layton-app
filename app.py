@@ -82,6 +82,10 @@ with tab2:
 
     df = df[df["requires_game_engine"]==False]
 
+
+    st.write("For the purpose of this Benchmark, we filter out the riddles that require a game engine to be verified")
+
+
     st.write("Number of riddles without game engine need:", len(df))
     st.write("Number of riddles without image need:", len(df[df["is_description_sufficient"]==True]))
     st.write("Number of riddles with image need:", len(df[df["is_description_sufficient"]==False]))
