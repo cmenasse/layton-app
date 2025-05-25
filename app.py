@@ -70,10 +70,10 @@ with tab2:
 
     @st.cache_data
     def load_data():
-    dataset = load_dataset("cmenasse/dayton")
-    if isinstance(dataset, dict):
-        dataset = list(dataset.values())[0]
-    return dataset
+        dataset = load_dataset("cmenasse/dayton")
+        if isinstance(dataset, dict):
+            dataset = list(dataset.values())[0]
+        return dataset
 
     data = load_data()
 
