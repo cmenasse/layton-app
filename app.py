@@ -93,23 +93,7 @@ with tab2:
     fig.update_xaxes(tickmode='linear', tick0=0, dtick=10)
     st.plotly_chart(fig)
 
-    category_counts = df['category'].value_counts()
-    single_occurrences = category_counts[category_counts < 10].index
-    df['category_grouped'] = df['category'].apply(lambda x: 'Other' if x in single_occurrences else x)
-    grouped_counts = df['category_grouped'].value_counts().reset_index()
-    grouped_counts.columns = ['Category', 'Count']
-
-    fig = px.pie(
-        grouped_counts,
-        values='Count',
-        names='Category',
-        title='Categories',
-        hole=0.4  
-    )
-    st.plotly_chart(fig)
-
-
-
+    
 
 with tab3:
 
