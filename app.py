@@ -81,96 +81,55 @@ with tab2:
     st.dataframe(df)
 
 
-    counts = df['picarats'].value_counts().sort_index()
-    counts_df = counts.reset_index()
-    counts_df.columns = ['Values', 'Count']
-    fig6 = go.Figure()
-
-    fig6.add_trace(go.Bar(
-        x=counts_df['Values'],
-        y=counts_df['Count']
-    ))
-    fig6.update_layout(
-        title='Picarats distribution',
-        xaxis=dict(
-            title='Values',
-            tickmode='array',
-            tickvals=list(range(0, 110, 10)),  
-            range=[0, 105]  
-        ),
-        yaxis=dict(
-            title='Count'
-        )
-    )
-    st.plotly_chart(fig6, key="picarats", use_container_width=True)
-
-
-
-    counts = df['picarats'].value_counts().sort_index().reset_index()
-    counts.columns = ['Values', 'Count']
-    if 100 not in counts['Values'].values:
-        counts = pd.concat([counts, pd.DataFrame({'Values': [100], 'Count': [0]})])
-        counts = counts.sort_values('Values').reset_index(drop=True)
-    fig5 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
-    fig5.update_xaxes(
-        tickmode='linear',
-        tick0=0,
-        dtick=10,
-        range=[0, 100]
-    )
-    st.plotly_chart(fig5, key="picarats_5", use_container_width=True)
-
-
-
-    counts = df['picarats'].value_counts().sort_index().reset_index()
-    counts.columns = ['Values', 'Count']
-    if 100 not in counts['Values'].values:
-        counts = pd.concat([counts, pd.DataFrame({'Values': [100], 'Count': [0]})])
-        counts = counts.sort_values('Values')
-    fig4 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
-
-    fig4.update_xaxes(
-        tickmode='array',
-        tickvals=list(range(0, 110, 10))  # Forcer les ticks
-    )
-
-    st.plotly_chart(fig4, key="picarats_3")
-
-
-
-
-    counts = df['picarats'].value_counts().sort_index().reset_index()
-    counts.columns = ['Values', 'Count']
-    fig2 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
-    fig2.update_xaxes(
-        tickmode='linear',
-        tick0=0,
-        dtick=10,
-        range=[0, 100] 
-    )
-    st.plotly_chart(fig2, key="picarats_2")
-
-
-    counts = df['picarats'].value_counts().sort_index().reset_index()
-    counts.columns = ['Values', 'Count']
-    fig1 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
-    fig1.update_xaxes(tickmode='linear', tick0=0, dtick=10)
-    st.plotly_chart(fig1, key="picarats_1")
-
     category_counts = df['category'].value_counts()
     single_occurrences = category_counts[category_counts < 10].index
     df['category_grouped'] = df['category'].apply(lambda x: 'Other' if x in single_occurrences else x)
     grouped_counts = df['category_grouped'].value_counts().reset_index()
     grouped_counts.columns = ['Category', 'Count']
 
-    fig3 = px.pie(
+    fig1 = px.pie(
         grouped_counts,
         values='Count',
         names='Category',
         title='Categories',
         hole=0.4  
     )
-    st.plotly_chart(fig3, key="camembert")
+    st.plotly_chart(fig1, key="camembert")
+
+
+
+    counts = df['picarats'].value_counts().sort_index().reset_index()
+    counts.columns = ['Values', 'Count']
+    fig2 = px.bar(counts, x='Values', y='Count', title='Picarats distribution')
+    fig2.update_xaxes(tickmode='linear', tick0=0, dtick=10)
+    st.plotly_chart(fig2, key="picarats")
+
+
+    counts = {
+        '1': (df['first_hint'].notna().sum() / len(df)) * 100,
+        '2': (df['second_hint'].notna().sum() / len(df)) * 100,
+        '3': (df['third_hint'].notna().sum() / len(df)) * 100,
+        '4': (df['special_hint'].notna().sum() / len(df)) * 100,
+    }
+    counts_df = pd.DataFrame(list(counts.items()), columns=['Nb of hints', 'Percentage'])
+
+    fig3 = px.bar(
+        counts_df,
+        x='Nb of hints',
+        y='Percentage',
+        title='Riddles with at least n hints',
+        text='Percentage'
+    )
+
+    # Afficher les valeurs sur les barres
+    fig3.update_traces(texttemplate='%{text:.1f}%', textposition='outside')
+
+    # Adapter l'échelle Y
+    fig3.update_yaxes(range=[0, max(counts.values()) + 1])
+
+    # Afficher dans Streamlit
+    st.plotly_chart(fig3, key="hints", use_container_width=True)
+
 
 
 
